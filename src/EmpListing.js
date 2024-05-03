@@ -1,8 +1,33 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const EmpListing = () => {
-    const[empdata,empdatachange] = useState(null);
+    const [empdata, empdatachange] = useState(null);
+
+    const navigate = useNavigate();
+
+    const LoadDetail = (id) => {
+        navigate("/employee/detail/" + id);
+    }
+
+    const LoadEdit = (id) => {
+        navigate("/employee/edit/" + id);
+    }
+
+    const Removefunction = (id) => {
+        if (window.confirm('Do you want to remove?')) {
+            fetch("http://localhost:8000/employees/" + id, {
+                method: "DELETE"
+            }).then((res) => {
+                alert('Removed successfully.')
+                window.location.reload();
+            }).catch((err) => {
+                console.log(err.message)
+            })
+        }
+    }
+
+
     useEffect(() => {
         fetch("http://localhost:8000/employees").then((res) => {
             return res.json();
@@ -11,8 +36,9 @@ const EmpListing = () => {
         }).catch((err) => {
             console.log(err.message);
         })
-    }, [])
+    }, []);
     return (
+
         <div className="container">
             <div className="card">
                 <div className="card-title">
@@ -34,19 +60,19 @@ const EmpListing = () => {
 
                         </thead>
                         <tbody>
-                            { empdata &&
-                                empdata.map(items =>(
+                            {empdata &&
+                            
+                                empdata.map(items => (
                                     <tr key={items.id}>
                                         <td>{items.id}</td>
                                         <td>{items.name}</td>
                                         <td>{items.email}</td>
                                         <td>{items.mobile}</td>
                                         <td>
-                                            <a className="btn btn-success">Edit</a>
-                                            <a className="btn btn-danger">Remove</a>
-                                            <a className="btn btn-primary">Details</a>
+                                            <a onClick={() => { LoadEdit(items.id) }} className="btn btn-success">Edit</a>
+                                            <a onClick={() => { Removefunction(items.id) }} className="btn btn-danger">Remove</a>
+                                            <a onClick={() => { LoadDetail(items.id) }} className="btn btn-primary">Details</a>
                                         </td>
-
                                     </tr>
                                 ))
                             }
@@ -56,7 +82,7 @@ const EmpListing = () => {
                 </div>
             </div>
         </div>
-
+        
     );
 
 }
