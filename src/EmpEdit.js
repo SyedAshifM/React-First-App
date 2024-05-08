@@ -5,7 +5,7 @@ const EmpEdit = () => {
 
     const { empid } = useParams();
 
-    useEffect((empid) => {
+    useEffect(() => {
         fetch("http://localhost:8000/employees/" + empid).then((res) => {
             return res.json();
         }).then((resp) => {
@@ -17,7 +17,7 @@ const EmpEdit = () => {
         }).catch((err) => {
             console.log(err.message);
         })
-    }, []);
+    }, [empid]);
 
 
     const [id, idchange] = useState("");

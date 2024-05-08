@@ -15,14 +15,14 @@ const EmpDetail = () => {
         }).catch((err) => {
             console.log(err.message);
         })
-    }, [])
+    }, );
     return (
         <div>
 
             <div className="container">
                 <div className="card row" style={{ "textAlign": "left" }}>
                     <div className="card-title">
-                        <h2>Employee Create</h2>
+                        <h2>Employee Detail</h2>
                     </div>
                     <div className="card-body"></div>
 

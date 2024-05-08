@@ -5,6 +5,8 @@ import EmpListing from './EmpListing';
 import EmpCreate from './EmpCreate';
 import EmpEdit from './EmpEdit';
 import EmpDetail from './EmpDetail';
+import AboutUs from './AboutUs';
+import ContactUs from './ContactUs';
 
 function App() {
   return (
@@ -18,6 +20,10 @@ function App() {
           <Route path='/employee/edit/:empid' element={<EmpEdit />}>
           </Route>
           <Route path='/employee/detail/:empid' element={<EmpDetail />}>
+          </Route>
+          <Route path='/about' element={<AboutUs />}>
+          </Route>
+          <Route path='/contact' element={<ContactUs />}>
           </Route>
         </Routes>
       </BrowserRouter>

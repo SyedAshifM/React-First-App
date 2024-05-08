@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const EmpCreate = () => {
 
-    const [id,idchange] = useState("");
+    const [id] = useState("");
     const [name,namechange] = useState("");
     const [email,emailchange] =useState("");
     const [mobile,mobilechange] =useState("");
@@ -52,7 +52,7 @@ const EmpCreate = () => {
                                     <div className="form-group">
                                         <label>Name</label>
                                         <input required value={name} onMouseDown={e=>valchange(true)} onChange={e => namechange(e.target.value)} className="form-control"></input>
-                                        {name.length==0 && validation && <span className="text-danger">Enter the name</span>}
+                                        {name.length===0 && validation && <span className="text-danger">Enter the name</span>}
                                     </div>
                                 </div>
 
